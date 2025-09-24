@@ -197,8 +197,6 @@ git remote -v
 
 ---
 
----
-
 ## 📦 Consolidate multiple existing GitHub repositories into a single repository.
 
 **Goal:** gather content from many repositories into one clean repository.
@@ -322,8 +320,6 @@ git pull origin main
 git cherry-pick <commit_id>
 git push origin main
 ```
-
----
 
 ### 📌 Summary of Workflow.
 
