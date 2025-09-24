@@ -83,8 +83,6 @@ git pull origin main
 
 ---
 
----
-
 ## 👥 Group projects and branching (from terminal).
 
 - Create the repository in GitHub (without a README) and copy the HTTPS address.
@@ -187,8 +185,6 @@ git checkout diseño
 
 ---
 
----
-
 ## 🔁 Change the remote repository (useful if you linked the wrong remote or need to switch).
 
 ```bash
@@ -269,8 +265,6 @@ This procedure results in a single clean, consolidated, professional repository 
 
 ---
 
----
-
 ## 🏢 Example of Real Business Workflow with Git.
 
 Several branches are created, which work like folders or a large directory.
@@ -341,11 +335,7 @@ git push origin main
 
 ---
 
----
-
----
-
-## 🛠️ Useful Additional Commands
+## 🛠️ Useful Additional Commands.
 
 ### Daily development
 ```bash
