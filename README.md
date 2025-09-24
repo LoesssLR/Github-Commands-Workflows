@@ -4,7 +4,7 @@ This repository contains a structured collection of **commands and workflows for
 
 ---
 
-## 🏫 Academic Information
+## 🏫 Academic Information.
 
 - **University**: Universidad Técnica Nacional.  
 - **Campus**: Pacífico.  
@@ -16,23 +16,25 @@ This repository contains a structured collection of **commands and workflows for
 
 ## 🚀 Scenarios & Commands.
 
-### Steps to upload a Python file to GitHub for the first time (from the folder to upload using CMD):
+### Steps to upload a project to GitHub for the first time (from the folder to upload using CMD/PowerShell):
 
 ```bash
 git init
 git remote add origin _REPO_URL_
 git branch -m main
 git add .
+
 # (Optional if already configured): 
 git config --global user.name "xxx"
 git config --global user.email "xxx@xxx.com"
+
 git commit -m "xxx"
 git push -u origin main
 ```
 
 ---
 
-### Steps to create a Pull Request on GitHub from the terminal (example using Python terminal or CMD):
+### Steps to create a Pull Request on GitHub from the terminal (example using VS Code terminal):
 
 ```bash
 # Verify that we are inside the folder:
@@ -83,7 +85,7 @@ git pull origin main
 
 ---
 
-## 👥 Group projects and branching (from CMD).
+## 👥 Group projects and branching (from terminal).
 
 - Create the repository in GitHub (without a README) and copy the HTTPS address.
 
@@ -269,6 +271,80 @@ This procedure results in a single clean, consolidated, professional repository 
 
 ---
 
+## 🏢 Example of Real Business Workflow with Git.
+
+Several branches are created, which work like folders or a large directory.
+
+A branch is created for each section of the company (PRODUCTION, QA, DEV, etc.).
+
+Developers take the latest version of DEV and create a copy, which becomes a temporary branch (usually named after the requirement) from DEV. This is where they will work, making commits (each with an associated ID, essentially linked to user stories), continuing this process until the requirement is completed.
+
+Before pushing changes to DEV, they must be reviewed to ensure they work correctly and meet the assigned requirement. For this, a Pull Request is created (a request to review the version of the code before integrating it into DEV, where it will either be approved or rejected).
+
+Once all requirements are approved and merged into DEV, a CI/CD pipeline runs all unit tests defined in a YAML file. If all tests pass, the changes are deployed to the WEB DEV server. If not, they must be fixed. After this stage, the QA team starts requesting each requirement using git cherry-pick <commit_id> from the WEB DEV server in order to test the code delivered by developers, checking whether it works or produces errors. These tests are based on acceptance criteria. If the code passes the tests, it is integrated into PRODUCTION; otherwise, the developer is notified to fix the issues and repeat the process.
+
+Once everything has been verified, compiled, and confirmed error-free, the changes are added to PRODUCTION. At that point, a QA team member may also access the production environment to verify that everything is functioning correctly. In most companies, new requirements are added on a weekly basis.
+
+For this reason, it is essential to clearly and correctly write the requirements and acceptance criteria. If a requirement is poorly written or ambiguous, it could cause problems—even in production.
+
+The workflow looks like this:
+
+### 🔄 Step by Step with Commands.
+
+#### 1. Developer creates a feature branch from DEV.
+```bash
+git checkout dev
+git pull origin dev
+git checkout -b feature/login
+```
+
+#### 2. Developer makes changes and commits.
+```bash
+git status
+git add .
+git commit -m "feat: add login screen with validation"
+```
+
+#### 3. Push branch and create Pull Request.
+```bash
+git push -u origin feature/login
+```
+
+#### 4. Pull Request is reviewed and merged into DEV.
+
+#### 5. CI/CD deploys to DEV environment automatically.
+
+#### 6. QA tests with cherry-pick on QA branch.
+```bash
+git checkout qa
+git pull origin qa
+git cherry-pick <commit_id>
+```
+
+#### 7. If approved, changes are deployed to PROD.
+```bash
+git checkout main
+git pull origin main
+git cherry-pick <commit_id>
+git push origin main
+```
+
+---
+
+### 📌 Summary of Workflow.
+
+1. **Developer** → feature branch → commits → Pull Request.  
+2. **Approver** → reviews and approves/rejects.  
+3. **DEV branch + CI/CD** → automated tests and deploy to DEV.  
+4. **QA branch + Cherry-pick** → isolated testing.  
+5. **Main/Master branch** → final deploy to Production.  
+
+---
+
+---
+
+---
+
 ## 🛠️ Useful Additional Commands
 
 ### Daily development
@@ -346,7 +422,8 @@ git rebase <base>              # Reapply commits on top of another base
 - Collaboration strategies with branches and Pull Requests.  
 - Remote repository reconfiguration.  
 - Consolidation of multiple projects into a single repository.  
-- Recovery, stashing and cherry-picking strategies.  
+- Recovery, stashing and cherry-picking strategies.
+- Example of complete workflow used by companies.
 
 ---
 
