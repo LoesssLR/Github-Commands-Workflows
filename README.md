@@ -275,37 +275,65 @@ This procedure results in a single clean, consolidated, professional repository 
 ```bash
 git status                     # Show status of changes
 git add <file>                 # Stage changes
+git add .                      # Stage all changes
+git commit -m "msg"            # Commit staged changes with message
 ```
 
 ### Branch management
 ```bash
+git branch                     # Show branches
 git branch <branch-name>       # Create a new branch
+git branch -M <branch-name>    # Rename/move branch
+git checkout <branch-name>     # Switch to an existing branch
+git checkout -b <branch-name>  # Create and switch to a new branch
 git switch <branch-name>       # Switch to a branch
 git branch -d <branch-name>    # Delete a branch
 ```
 
 ### Integration and collaboration
 ```bash
+git remote add origin <url>    # Link local repo to remote
+git push -u origin <branch>    # Push changes to remote and set upstream
+git push                       # Push commits
+git pull origin <branch>       # Fetch and merge from remote
 git merge <branch>             # Merge a branch into current
-git remote add <name> <url>    # Add a remote repository
-git push <remote> <branch>     # Push changes to a remote branch
-git pull <remote> <branch>     # Fetch and merge changes from remote
+git fetch                      # Fetch changes without merging
+```
+
+### Checking history
+```bash
+git log                        # Show commit history
+git show <hash>                # Show details of a commit
+git diff <a> <b>               # Compare two commits, branches or files
 ```
 
 ### Recovery and cleanup
 ```bash
-git fetch                      # Fetch changes without merging
+git checkout -- <file>         # Undo local changes in a file
+git reset --soft origin/<br>   # Soft reset (keep changes)
+git reset --hard origin/<br>   # Hard reset (discard changes)
 git reset --hard HEAD          # Discard all local changes
 git revert <commit-hash>       # Revert a commit
 ```
 
+### Stashing
+```bash
+git stash                      # Save temporary changes
+git stash pop                  # Restore and delete stash
+git stash apply                # Restore stash but keep it saved
+git stash list                 # Show all stashes
+```
+
+### Cherry-pick
+```bash
+git cherry-pick <hash>         # Apply a commit from another branch
+git cherry-pick --abort        # Abort cherry-pick
+git cherry-pick --continue     # Continue after conflict resolution
+git cherry-pick --skip         # Skip current commit in sequence
+```
+
 ### Advanced and utilities
 ```bash
-git diff <a> <b>               # Compare two commits, branches or files
-git show <hash>                # Show details of a commit
-git stash                      # Save temporary changes and clean working tree
-git stash pop                  # Restore changes from stash
-git cherry-pick <hash>         # Apply a specific commit to current branch
 git rebase <base>              # Reapply commits on top of another base
 ```
 
@@ -318,6 +346,7 @@ git rebase <base>              # Reapply commits on top of another base
 - Collaboration strategies with branches and Pull Requests.  
 - Remote repository reconfiguration.  
 - Consolidation of multiple projects into a single repository.  
+- Recovery, stashing and cherry-picking strategies.  
 
 ---
 
