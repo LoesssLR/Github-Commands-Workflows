@@ -9,8 +9,7 @@ This repository contains a structured collection of **commands and workflows for
 - **University**: Universidad Técnica Nacional.  
 - **Campus**: Pacífico.  
 - **Major**: Information Technology Engineering.  
-
-**Author**: Luis Alejandro López Reyes.  
+- **Author**: Luis Alejandro López Reyes.  
 
 ---
 
@@ -34,7 +33,7 @@ git push -u origin main
 
 ---
 
-### Steps to create a Pull Request on GitHub from the terminal (example using VS Code terminal):
+### Steps to upload changes to GitHub from the terminal (example using VS Code terminal):
 
 ```bash
 # Verify that we are inside the folder:
@@ -333,75 +332,101 @@ git push origin main
 
 ## 🛠️ Useful Additional Commands.
 
-### Daily development
+### Basic Information.
 ```bash
-git status                     # Show status of changes
-git add <file>                 # Stage changes
-git add .                      # Stage all changes
-git commit -m "msg"            # Commit staged changes with message
+git --version                 # Show installed Git version
+git help <command>            # Show help for a specific command
 ```
 
-### Branch management
+### Daily development.
 ```bash
-git branch                     # Show branches
-git branch <branch-name>       # Create a new branch
-git branch -M <branch-name>    # Rename/move branch
-git checkout <branch-name>     # Switch to an existing branch
-git checkout -b <branch-name>  # Create and switch to a new branch
-git switch <branch-name>       # Switch to a branch
-git branch -d <branch-name>    # Delete a branch
+git status                    # Show status of changes
+git add <file>                # Stage changes
+git add .                     # Stage all changes
+git commit -m "msg"           # Commit staged changes with message
+git commit --amend            # Modify or replace the last commit
 ```
 
-### Integration and collaboration
+### Branch management.
 ```bash
-git remote add origin <url>    # Link local repo to remote
-git push -u origin <branch>    # Push changes to remote and set upstream
-git push                       # Push commits
-git pull origin <branch>       # Fetch and merge from remote
-git merge <branch>             # Merge a branch into current
-git fetch                      # Fetch changes without merging
+git branch                    # Show branches
+git branch <branch-name>      # Create a new branch
+git branch -M <branch-name>   # Rename/move branch
+git checkout <branch-name>    # Switch to an existing branch
+git checkout -b <branch-name> # Create and switch to a new branch
+git switch <branch-name>      # Switch to a branch
+git branch -d <branch-name>   # Delete a branch
 ```
 
-### Checking history
+### Integration and collaboration.
 ```bash
-git log                        # Show commit history
-git show <hash>                # Show details of a commit
-git diff <a> <b>               # Compare two commits, branches or files
+git remote add origin <url>        # Link local repo to remote
+git remote set-url origin <url>    # Change URL of the remote repository
+git push -u origin <branch>        # Push changes to remote and set upstream
+git push                           # Push commits
+git pull origin <branch>           # Fetch and merge from remote branch
+git clone --branch <branch> <url>  # Clone a remote repo on a specific branch
+git merge <branch>                 # Merge a branch into current
+git fetch                          # Fetch changes without merging
 ```
 
-### Recovery and cleanup
+### Checking history.
 ```bash
-git checkout -- <file>         # Undo local changes in a file
-git reset --soft origin/<br>   # Soft reset (keep changes)
-git reset --hard origin/<br>   # Hard reset (discard changes)
-git reset --hard HEAD          # Discard all local changes
-git revert <commit-hash>       # Revert a commit
+git log                       # Show commit history
+git show <hash>               # Show details of a commit
+git diff <a> <b>              # Compare two commits, branches or files
 ```
 
-### Stashing
+### Recovery and cleanup.
 ```bash
-git stash                      # Save temporary changes
-git stash pop                  # Restore and delete stash
-git stash apply                # Restore stash but keep it saved
-git stash list                 # Show all stashes
+git checkout -- <file>        # Undo local changes in a file
+git reset --soft origin/<br>  # Soft reset (keep changes)
+git reset --hard origin/<br>  # Hard reset (discard changes)
+git reset --hard HEAD         # Discard all local changes
+git revert <commit-hash>      # Revert a commit
 ```
 
-### Cherry-pick
+### Stashing.
 ```bash
-git cherry-pick <hash>         # Apply a commit from another branch
-git cherry-pick --abort        # Abort cherry-pick
-git cherry-pick --continue     # Continue after conflict resolution
-git cherry-pick --skip         # Skip current commit in sequence
+git stash                     # Save temporary changes
+git stash pop                 # Restore and delete stash
+git stash apply               # Restore stash but keep it saved
+git stash list                # Show all stashes
 ```
 
-### Advanced and utilities
+### Cherry-pick.
+```bash
+git cherry-pick <hash>        # Apply a commit from another branch
+git cherry-pick --abort       # Abort cherry-pick
+git cherry-pick --continue    # Continue after conflict resolution
+git cherry-pick --skip        # Skip current commit in sequence
+```
+
+### Tag Management.
+
+#### 📘 What are Tags and what are they for?
+
+**Tags** are labels that identify specific points in the Git history — commonly used to mark **releases, milestones, or stable versions** of a project.  
+They are not branches; rather, they act as permanent reference points to commits, often representing versions like `v1.0`, `v2.3.5`, etc.
+
+```bash
+git tag <tag> -m "<message>"         # Create a new tag
+git tag                              # List all tags
+git tag -d <tag>                     # Delete a specific tag
+git tag -a <tag> <commit> -m "<msg>" # Create a tag on a previous commit
+git show <tag>                       # Show information about a specific tag
+```
+
+---
+
+### Advanced and utilities.
 ```bash
 git rebase <base>              # Reapply commits on top of another base
 ```
 
 ---
 
-## 📘 Learning Outcomes
+## 📘 Learning Outcomes.
 
 - Complete workflow with Git and GitHub.  
 - Managing individual and group repositories.  
@@ -413,6 +438,6 @@ git rebase <base>              # Reapply commits on top of another base
 
 ---
 
-## 📜 License
+## 📜 License.
 
 This repository was created for **educational** and **personal documentation** purposes.
