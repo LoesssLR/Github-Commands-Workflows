@@ -84,103 +84,85 @@ git pull origin main
 
 ## 👥 Group projects and branching (from terminal).
 
-- Create the repository in GitHub (without a README) and copy the HTTPS address.
+### 🧩 Steps for group projects and branching workflow.
 
-- Open CMD and navigate to the Desktop or desired path:
-```
-C:\Users\Admin\Desktop>
-```
+1️⃣ **Open the terminal** inside your local project folder.  
+(Make sure you are in the root folder that you´re working, example: `FindPropertiesApp`)
 
-- Clone the repository:
+---
+
+2️⃣ **Update your local `main` branch** to get the latest version from the remote repository:
 ```bash
-git clone https://github.com/xxx/xxx.git
+git checkout main
+git pull origin main
 ```
 
-- Enter the folder:
+---
+
+3️⃣ **Create a new temporary branch** from `main` (for your specific task):
 ```bash
-cd proyectoFinal_Web1
+git checkout -b task2-FindPropertiesApp
 ```
+🔹 This creates a new branch called `task2-FindPropertiesApp` and automatically switches to it.  
+🔹 You’ll work on this branch without modifying the main branch.
 
-- Create folders for the project:
-```bash
-mkdir css js img php
-```
+---
 
-- Create files inside each folder (Windows CMD example):
-```bash
-echo. > index.html
-echo. > css\style.css
-echo. > js\script.js
-echo. > php\conexion.php
-```
-
-- Verify everything was created:
-```bash
-dir
-```
-
-- Once the project structure is ready, push to GitHub:
-```bash
-git status
-git add .
-git commit -m "Estructura inicial del proyecto"
-git push -u origin main
-```
-
-- Each team member creates their own branch to work:
-```bash
-git checkout -b diseño
-```
-
-- Verify current branch:
-```bash
-git branch
-```
-
-- Example of adding changes to the `diseño` branch:
+4️⃣ **Add all your changes (structure, files, mockups, etc.)**
 ```bash
 git add .
-git commit -m "Ajustes"
-git push -u origin diseño
 ```
 
-- After pushing changes to the branch, create a Pull Request on GitHub:
-  1. Go to the repository on GitHub.
-  2. Click the "Pull Requests" tab.
-  3. Click "New Pull Request".
-  4. Choose the branch you worked on and compare it with `main`.
-  5. Review the changes.
-  6. Write a clear message in the PR describing what was added or modified.
-  7. Click "Create Pull Request".
+---
 
-- Steps for the team leader:
-  - Review Pull Requests on GitHub.
-    - If everything is OK, approve and click "Merge" to merge changes into `main`.
-    - If there are issues, comment on the PR so the teammate can fix them.
-  - To merge the PR into `main`:
-    1. Open the Pull Request.
-    2. Click "Merge Pull Request".
-    3. Confirm the merge.
-    4. (Optional) Delete the branch if it will not be used anymore.
-
-After merging the PR into `main`, all team members must run the following steps locally:
-
+5️⃣ **Commit your changes with a clear message**
 ```bash
-git checkout main        # Go to main branch
-git pull origin main     # Download the latest version
-git checkout diseño      # Go back to your working branch
-git merge main           # Update your branch with the latest changes from main
+git commit -m "Implement full project structure with controllers, entities, utils and strings"
 ```
 
-This ensures that everyone works with the most up-to-date code.
+---
 
-*** Optional - Share the branch with team members:
+6️⃣ **Push your branch to the remote repository**
 ```bash
-git fetch
-git checkout diseño
+git push origin task2-FindPropertiesApp
+```
+🔹 This uploads the temporary branch to GitHub.  
+🔹 It won’t affect the `main` branch yet (that one stays clean).
+
+---
+
+7️⃣ **Create the Pull Request (PR) from GitHub**
+
+Go to your repository:  
+👉 https://github.com/LoesssLR/FindPropertiesApp
+
+GitHub will show a message like:  
+**“Compare & pull request”** — click on it.
+
+In the PR title, write exactly:  
+```
+task2-FindPropertiesApp
 ```
 
-*** Rule: Every branch different from `main` must be merged via a Pull Request, even if you worked on it as the leader.
+In the description, briefly explain what you added:  
+```
+Added project structure (Entities, Data, Controllers, Utils, Mockups)
+```
+
+Assign the  **Reviewer**:  
+```
+
+Select the **main** branch as the base and create the PR ✅
+
+---
+
+After the PR is merged into `main`, update your local repository:
+```bash
+git checkout main
+git pull origin main
+```
+
+This ensures your main branch is synchronized with the latest version.
 
 ---
 
