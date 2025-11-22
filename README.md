@@ -136,59 +136,109 @@ Compare: your task branch
 
 ---
 
-## 🔹 Scenario 2: Team base branch (`dev-team1`) + personal temp branch (`devLuisAle`).
+# 🔹 Scenario 2: Working with a base branch (`dev-team1`) and a temporary personal branch (`devLuisAle`) + conflict resolution
 
-### 1️⃣ Clone the project.
+## 📌 Branches involved
+- **Base branch (references `main`):** `dev-team1`  
+- **Temporary branch (created on GitHub before cloning):** `devLuisAle`
+
+---
+
+## 1️⃣ Clone the project
 ```bash
 git clone <URL>
 cd project
 ```
 
-### 2️⃣ List available branches.
+---
+
+## 2️⃣ Inside the project terminal
+List your branches:
 ```bash
-git branch -a
+git branch
 ```
 
-### 3️⃣ Switch to or create your personal branch.
-If it already exists locally:
+Pull updates from the remote:
+```bash
+git pull
+```
+
+Switch to your personal temporary branch:
 ```bash
 git switch devLuisAle
 ```
 
-If it does not exist yet:
+---
+
+## ⚠️ Important Note  
+Always **pull before pushing**, so you get the latest changes from `dev-team1` if any exist.  
+This ensures your **push + PR** will be conflict-free.
+
+---
+
+## ⭐ When you are already working on the branch (`devLuisAle`)
+
+Check branches:
 ```bash
-git switch dev-team1
-git pull origin dev-team1
-git checkout -b devLuisAle
+git branch
 ```
 
-### 4️⃣ Work normally on your branch.
+Check file status:
 ```bash
-git switch devLuisAle
 git status
 ```
 
-### 5️⃣ Before pushing → pull latest changes from `dev-team1`.
+Stage your changes:
+```bash
+git add .
+```
+
+Commit:
+```bash
+git commit -m "Your commit message"
+```
+
+Pull the latest changes from the team base branch:
 ```bash
 git pull origin dev-team1
 ```
 
-Resolve any merge conflicts that appear.
+---
 
-Then:
+## 🧩 Resolve merge conflicts (if any)
+
+When a conflict appears, you will see three sections:
+
+- **Left (devLuisAle)** → your local version (your changes)  
+- **Center (Result)** → the final merged output you will save  
+- **Right (origin/dev-team1)** → the team’s latest remote version  
+
+After fixing conflicts, stage your fixes:
 ```bash
 git add .
-git commit -m "Merge dev-team1 into devLuisAle"
 ```
-
-### 6️⃣ Push your branch.
+or add a specific file:
 ```bash
-git push -u origin devLuisAle
+git add FILE
 ```
 
-Create a Pull Request:  
-Base: `dev-team1`  
-Compare: `devLuisAle`
+Commit the merge resolution:
+```bash
+git commit -m "Resolve conflicts and merge dev-team1 into devLuisAle"
+```
+
+---
+
+## 🚀 Push your temporary branch
+```bash
+git push -u devLuisAle
+```
+
+---
+
+## 🔁 Create your Pull Request
+- **Base:** `dev-team1`  
+- **Compare:** `devLuisAle`
 
 ---
 
