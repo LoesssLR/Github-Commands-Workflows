@@ -82,87 +82,122 @@ git pull origin main
 
 ---
 
-## 👥 Group projects and branching (from terminal).
+# 👥 Git Workflow for Collaborative Projects (From terminal).
 
-### 🧩 Steps for group projects and branching workflow.
-
-1️⃣ **Open the terminal** inside your local project folder.  
-(Make sure you are in the root folder that you´re working, example: `FindPropertiesApp`)
+This document explains two common workflow scenarios in team projects:  
+1) Working directly from `main` with task branches.  
+2) Working with a shared team branch (`dev-team1`) and a personal temporary branch (`devLuisAle`).
 
 ---
 
-2️⃣ **Update your local `main` branch** to get the latest version from the remote repository:
+## 🔹 Scenario 1: Working directly with `main` and task branches.
+
+### 1️⃣ Clean up references to deleted remote branches.
 ```bash
-git checkout main
+git fetch -p
+```
+
+### 2️⃣ Switch to `main` and update it.
+```bash
+git switch main
 git pull origin main
 ```
 
----
-
-3️⃣ **Create a new temporary branch** from `main` (for your specific task):
+### 3️⃣ List local branches.
 ```bash
-git checkout -b task2-FindPropertiesApp
+git branch
 ```
-🔹 This creates a new branch called `task2-FindPropertiesApp` and automatically switches to it.  
-🔹 You’ll work on this branch without modifying the main branch.
 
----
+### 4️⃣ Delete the previous task branch.
+```bash
+git branch -d <branch>
+git branch -D <branch>  # forced deletion
+```
 
-4️⃣ **Add all your changes (structure, files, mockups, etc.)**
+### 5️⃣ Create a new task branch.
+```bash
+git checkout -b task6-LuisLopez-FindPropertiesApp
+```
+
+### 6️⃣ Stage changes and commit.
 ```bash
 git add .
+git commit -m "Clear description of the changes"
 ```
 
----
-
-5️⃣ **Commit your changes with a clear message**
+### 7️⃣ Push the branch.
 ```bash
-git commit -m "Implement full project structure with controllers, entities, utils and strings"
+git push -u origin task6-LuisLopez-FindPropertiesApp
 ```
+
+### 8️⃣ Create a Pull Request on GitHub.
+Base: `main`  
+Compare: your task branch
 
 ---
 
-6️⃣ **Push your branch to the remote repository**
+## 🔹 Scenario 2: Team base branch (`dev-team1`) + personal temp branch (`devLuisAle`).
+
+### 1️⃣ Clone the project.
 ```bash
-git push origin task2-FindPropertiesApp
-```
-🔹 This uploads the temporary branch to GitHub.  
-🔹 It won’t affect the `main` branch yet (that one stays clean).
-
----
-
-7️⃣ **Create the Pull Request (PR) from GitHub**
-
-Go to your repository:  
-👉 https://github.com/LoesssLR/FindPropertiesApp
-
-GitHub will show a message like:  
-**“Compare & pull request”** — click on it.
-
-In the PR title, write exactly:  
-```
-task2-FindPropertiesApp
+git clone <URL>
+cd project
 ```
 
-In the description, briefly explain what you added:  
-```
-Added project structure (Entities, Data, Controllers, Utils, Mockups)
-```
-
-Assign the  **Reviewer**:  
-```
-
-Select the **main** branch as the base and create the PR ✅
-
----
-
-After the PR is merged into `main`, update your local repository:
+### 2️⃣ List available branches.
 ```bash
-git checkout main
-git pull origin main
+git branch -a
 ```
 
-This ensures your main branch is synchronized with the latest version.
+### 3️⃣ Switch to or create your personal branch.
+If it already exists locally:
+```bash
+git switch devLuisAle
+```
+
+If it does not exist yet:
+```bash
+git switch dev-team1
+git pull origin dev-team1
+git checkout -b devLuisAle
+```
+
+### 4️⃣ Work normally on your branch.
+```bash
+git switch devLuisAle
+git status
+```
+
+### 5️⃣ Before pushing → pull latest changes from `dev-team1`.
+```bash
+git pull origin dev-team1
+```
+
+Resolve any merge conflicts that appear.
+
+Then:
+```bash
+git add .
+git commit -m "Merge dev-team1 into devLuisAle"
+```
+
+### 6️⃣ Push your branch.
+```bash
+git push -u origin devLuisAle
+```
+
+Create a Pull Request:  
+Base: `dev-team1`  
+Compare: `devLuisAle`
+
+---
+
+## ✔️ Summary
+
+| Scenario | Base Branch | Working Branch | Purpose |
+|----------|-------------|----------------|----------|
+| **1** | `main` | `taskX-user` | Direct tasks merged into main |
+| **2** | `dev-team1` | `devUser` | Team workflow with frequent integration |
 
 ---
 
