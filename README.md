@@ -1,10 +1,10 @@
-# 📘 GitHub Commands & Workflows.
+# GitHub Commands & Workflows.
 
 This repository contains a structured collection of **commands and workflows for Git and GitHub**, organized by practical scenarios and real examples.  
 
 ---
 
-## 🏫 Academic Information.
+## Academic Information.
 
 - **University**: Universidad Técnica Nacional.  
 - **Campus**: Pacífico.  
@@ -13,7 +13,7 @@ This repository contains a structured collection of **commands and workflows for
 
 ---
 
-## 🚀 Scenarios & Commands.
+## Scenarios & Commands.
 
 ### Steps to upload a project to GitHub for the first time (from the folder to upload using CMD/PowerShell):
 
@@ -82,7 +82,7 @@ git pull origin main
 
 ---
 
-# 👥 Git Workflow for Collaborative Projects (From terminal).
+# Git Workflow for Collaborative Projects (From terminal).
 
 This document explains two common workflow scenarios in team projects:  
 1) Working directly from `main` with task branches.  
@@ -90,61 +90,61 @@ This document explains two common workflow scenarios in team projects:
 
 ---
 
-## 🔹 Scenario 1: Working directly with `main` and task branches.
+## Scenario 1: Working directly with `main` and task branches.
 
-### 1️⃣ Clean up references to deleted remote branches.
+### 1. Clean up references to deleted remote branches.
 ```bash
 git fetch -p
 ```
 
-### 2️⃣ Switch to `main` and update it.
+### 2. Switch to `main` and update it.
 ```bash
 git switch main
 git pull origin main
 ```
 
-### 3️⃣ List local branches.
+### 3. List local branches.
 ```bash
 git branch
 ```
 
-### 4️⃣ Delete the previous task branch.
+### 4. Delete the previous task branch.
 ```bash
 git branch -d <branch>
 git branch -D <branch>  # forced deletion
 ```
 
-### 5️⃣ Create a new task branch.
+### 5. Create a new task branch.
 ```bash
 git checkout -b task6-LuisLopez-FindPropertiesApp
 ```
 
-### 6️⃣ Stage changes and commit.
+### 6. Stage changes and commit.
 ```bash
 git add .
 git commit -m "Clear description of the changes"
 ```
 
-### 7️⃣ Push the branch.
+### 7. Push the branch.
 ```bash
 git push -u origin task6-LuisLopez-FindPropertiesApp
 ```
 
-### 8️⃣ Create a Pull Request on GitHub.
+### 8. Create a Pull Request on GitHub.
 Base: `main`  
 Compare: your task branch
 
 ---
 
-# 🔹 Scenario 2: Working with a base branch (`dev-team1`) and a temporary personal branch (`devLuisAle`) + conflict resolution
+# Scenario 2: Working with a base branch (`dev-team1`) and a temporary personal branch (`devLuisAle`) + conflict resolution
 
-## 📌 Branches involved
+## Branches involved
 - **Base branch (references `main`):** `dev-team1`  
 - **Temporary branch (created on GitHub before cloning):** `devLuisAle`
 
 ---
 
-## 1️⃣ Clone the project
+## 1. Clone the project
 ```bash
 git clone <URL>
 cd project
@@ -152,7 +152,7 @@ cd project
 
 ---
 
-## 2️⃣ Inside the project terminal
+## 2. Inside the project terminal
 List your branches:
 ```bash
 git branch
@@ -170,13 +170,13 @@ git switch devLuisAle
 
 ---
 
-## ⚠️ Important Note  
+## Important Note  
 Always **pull before pushing**, so you get the latest changes from `dev-team1` if any exist.  
 This ensures your **push + PR** will be conflict-free.
 
 ---
 
-## ⭐ When you are already working on the branch (`devLuisAle`)
+## When you are already working on the branch (`devLuisAle`)
 
 Check branches:
 ```bash
@@ -205,7 +205,7 @@ git pull origin dev-team1
 
 ---
 
-## 🧩 Resolve merge conflicts (if any)
+## Resolve merge conflicts (if any)
 
 When a conflict appears, you will see three sections:
 
@@ -229,20 +229,20 @@ git commit -m "Resolve conflicts and merge dev-team1 into devLuisAle"
 
 ---
 
-## 🚀 Push your temporary branch
+## Push your temporary branch
 ```bash
 git push -u devLuisAle
 ```
 
 ---
 
-## 🔁 Create your Pull Request
+## Create your Pull Request
 - **Base:** `dev-team1`  
 - **Compare:** `devLuisAle`
 
 ---
 
-## ✔️ Summary
+## Summary
 
 | Scenario | Base Branch | Working Branch | Purpose |
 |----------|-------------|----------------|----------|
@@ -251,7 +251,7 @@ git push -u devLuisAle
 
 ---
 
-## 🔁 Change the remote repository (useful if you linked the wrong remote or need to switch).
+## Change the remote repository (useful if you linked the wrong remote or need to switch).
 
 ```bash
 git remote -v
@@ -263,25 +263,23 @@ git remote -v
 
 ---
 
-## 🏢 Example of Real Business Workflow with Git.
+## Example of Real Business Workflow with Git.
 
-Several branches are created, which work like folders or a large directory.
+In a real business environment, several branches are created that work like folders or a large directory. Typically, a branch is created for each environment or section of the company (`PRODUCTION`, `QA`, `DEV`, etc.).
 
-A branch is created for each section of the company (PRODUCTION, QA, DEV, etc.).
+**Workflow Steps:**
+- **Branching:** Developers take the latest version of `DEV` and create a copy. This becomes a temporary branch (usually named after the requirement) where they will work.
+- **Committing:** Developers make commits on this branch (each with an associated ID, linked to user stories), continuing this process until the requirement is completed.
+- **Pull Requests:** Before pushing changes to `DEV`, they must be reviewed to ensure they work correctly and meet the assigned requirement. A Pull Request is created to review the code before integrating it into `DEV`, where it will either be approved or rejected.
+- **CI/CD & Deployment to DEV:** Once requirements are approved and merged into `DEV`, a CI/CD pipeline runs all unit tests defined in a YAML file. If tests pass, the changes are deployed to the WEB DEV server. If not, they must be fixed.
+- **QA Testing:** The QA team tests each requirement by using `git cherry-pick <commit_id>` from the WEB DEV server in an isolated branch. They test the delivered code against the acceptance criteria to see if it works or produces errors.
+- **Production:** If the code passes the tests, it is integrated into `PRODUCTION`. A QA team member verifies the production environment to ensure everything functions correctly. If it fails QA, the developer is notified to fix issues and repeat the process.
 
-Developers take the latest version of DEV and create a copy, which becomes a temporary branch (usually named after the requirement) from DEV. This is where they will work, making commits (each with an associated ID, essentially linked to user stories), continuing this process until the requirement is completed.
-
-Before pushing changes to DEV, they must be reviewed to ensure they work correctly and meet the assigned requirement. For this, a Pull Request is created (a request to review the version of the code before integrating it into DEV, where it will either be approved or rejected).
-
-Once all requirements are approved and merged into DEV, a CI/CD pipeline runs all unit tests defined in a YAML file. If all tests pass, the changes are deployed to the WEB DEV server. If not, they must be fixed. After this stage, the QA team starts requesting each requirement using git cherry-pick <commit_id> from the WEB DEV server in order to test the code delivered by developers, checking whether it works or produces errors. These tests are based on acceptance criteria. If the code passes the tests, it is integrated into PRODUCTION; otherwise, the developer is notified to fix the issues and repeat the process.
-
-Once everything has been verified, compiled, and confirmed error-free, the changes are added to PRODUCTION. At that point, a QA team member may also access the production environment to verify that everything is functioning correctly. In most companies, new requirements are added on a weekly basis.
-
-For this reason, it is essential to clearly and correctly write the requirements and acceptance criteria. If a requirement is poorly written or ambiguous, it could cause problems—even in production.
+> **Note:** Because of this workflow, it is essential to clearly and correctly write the requirements and acceptance criteria. If a requirement is poorly written or ambiguous, it could cause problems—even in production.
 
 The workflow looks like this:
 
-### 🔄 Step by Step with Commands.
+### Step by Step with Commands.
 
 #### 1. Developer creates a feature branch from DEV.
 ```bash
@@ -321,7 +319,7 @@ git cherry-pick <commit_id>
 git push origin main
 ```
 
-### 📌 Summary of Workflow.
+### Summary of Workflow.
 
 1. **Developer** → feature branch → commits → Pull Request.  
 2. **Approver** → reviews and approves/rejects.  
@@ -331,7 +329,7 @@ git push origin main
 
 ---
 
-## 🛠️ Useful Additional Commands.
+## Useful Additional Commands.
 
 ### Basic Information.
 ```bash
@@ -405,7 +403,7 @@ git cherry-pick --skip        # Skip current commit in sequence
 
 ### Tag Management.
 
-#### 📘 What are Tags and what are they for?
+#### What are Tags and what are they for?
 
 **Tags** are labels that identify specific points in the Git history — commonly used to mark **releases, milestones, or stable versions** of a project.  
 They are not branches; rather, they act as permanent reference points to commits, often representing versions like `v1.0`, `v2.3.5`, etc.
@@ -427,7 +425,7 @@ git rebase <base>              # Reapply commits on top of another base
 
 ---
 
-## 📘 Learning Outcomes.
+## Learning Outcomes.
 
 - Complete workflow with Git and GitHub.  
 - Managing individual and group repositories.  
@@ -439,6 +437,6 @@ git rebase <base>              # Reapply commits on top of another base
 
 ---
 
-## 📜 License.
+## License.
 
 This repository was created for **educational** and **personal documentation** purposes.
