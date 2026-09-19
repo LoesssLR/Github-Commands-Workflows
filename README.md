@@ -4,7 +4,7 @@ This repository contains a structured collection of **commands and workflows for
 
 ## Table of Contents
 
-- [Academic Information](#academic-information)
+- [Personal Information](#personal-information)
 - [Basic Workflows](#basic-workflows)
   - [First-time upload: from local folder to GitHub](#first-time-upload-from-local-folder-to-github)
   - [Upload changes to GitHub (VS Code terminal example)](#upload-changes-to-github-vs-code-terminal-example)
@@ -33,15 +33,12 @@ This repository contains a structured collection of **commands and workflows for
   - [Resolving Merge Conflicts from the Terminal](#resolving-merge-conflicts-from-the-terminal)
   - [GitHub Actions (CI/CD)](#github-actions-cicd)
 - [Security Practices in Git and GitHub](#security-practices-in-git-and-github)
-- [Learning Outcomes](#learning-outcomes)
 - [Purpose](#purpose)
 
-## Academic Information
+## Personal Information
 
-- **University**: Universidad Técnica Nacional
-- **Campus**: Pacífico
-- **Major**: Information Technology Engineering
 - **Author**: Luis Alejandro López Reyes
+- **Role**: Security & Systems Engineer | SOC Analyst | Blue Team | Cloud Defense
 
 ## Basic Workflows
 
@@ -681,19 +678,6 @@ git rm --cached .env
 ```
 
 Then revoke/rotate the credential in the provider and enable push protection to prevent it from happening again.
-
-## Learning Outcomes
-
-- Complete workflow with Git and GitHub
-- Managing individual and group repositories
-- Collaboration strategies with branches and Pull Requests
-- Remote repository reconfiguration
-- Consolidation of multiple projects into a single repository
-- Recovery, stashing and cherry-picking strategies
-- Merge conflict resolution strategies
-- CI/CD automation with GitHub Actions
-- Security practices in Git and GitHub (secret management, code scanning, signed commits)
-- Example of a complete workflow used by companies
 
 ## Purpose
 
